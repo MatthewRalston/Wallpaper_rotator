@@ -1,0 +1,215 @@
+--[[
+#=====================================================================================
+#                               aureola
+# Date    : 27/01/2018
+# Author  : Erik Dubois at http://www.erikdubois.be
+# Version : v2.0.3
+# License : Distributed under the terms of GNU GPL version 2 or later
+# Documentation : http://erikdubois.be/category/linux/aureola/
+#======================================================================================
+
+#======================================================================================
+#                               
+# Source : Daniel Zet Google+
+#
+#======================================================================================
+
+]]
+
+conky.config = {
+
+	--Various settings
+
+	background = true, 							-- forked to background
+	cpu_avg_samples = 2,
+	diskio_avg_samples = 10,
+	double_buffer = true,
+	if_up_strictness = 'address',
+	net_avg_samples = 2,
+	no_buffers = true,
+	temperature_unit = 'celsius',
+	text_buffer_size = 2048,
+	update_interval = 1,
+	imlib_cache_size = 0,                       --spotify cover
+
+	--Placement
+
+	alignment = 'top_right',
+	--Arch Duoscreen
+	--gap_x = -1910,
+	gap_x = 5,
+	gap_y = 5,
+	minimum_height = 1100,
+	minimum_width = 500,
+	maximum_width = 800,
+
+	--Graphical
+
+	border_inner_margin = 10, 					-- margin between border and text
+	border_outer_margin = 1, 					-- margin between border and edge of window
+	border_width = 0, 							-- border width in pixels
+	default_bar_width = 440,
+	default_bar_height = 10,
+	default_gauge_height = 25,
+	default_gauge_width =40,
+	default_graph_height = 40,
+	default_graph_width = 430,
+	default_shade_color = '#000000',
+	default_outline_color = '#000000',
+	draw_borders = false,						--draw borders around text
+	draw_graph_borders = true,
+	draw_shades = false,
+	draw_outline = false,
+	stippled_borders = 0,
+
+	--Textual
+	
+	extra_newline = false,
+	format_human_readable = true,
+	font = 'Sans Mono:size=9:oblique',
+	max_text_width = 0,
+	max_user_text = 16384,
+	override_utf8_locale = true,
+	short_units = true,
+	top_name_width = 21,
+	top_name_verbose = false,
+	uppercase = false,
+	use_spacer = 'none',
+	use_xft = true,
+	xftalpha = 1,
+
+	--Windows
+
+	own_window = true,
+	own_window_argb_value = 150,
+	own_window_argb_visual = true,
+	own_window_class = 'Conky',
+	own_window_colour = '#000000',
+	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+	own_window_transparent = no,
+	own_window_title = 'system_conky',
+	own_window_type = 'normal',-- # options are: normal/override/dock/desktop/panel
+	
+
+	--Colours
+
+	default_color = '#FFFFFF',  				-- default color and border color
+	color1 = '$COLOR_BACKGROUND',
+	color2 = '$COLOR_BORDER',
+	color3 = '$COLOR3',
+	color4 = '$COLOR4',
+	color5 = '$COLOR5',
+	color6 = '$COLOR6',
+
+	--Signal Colours
+	color7 = '#1F7411',  --green
+	color8 = '#FFA726',  --orange
+	color9 = '#F1544B',  --firebrick
+	
+
+	--Lua
+
+
+};
+
+
+conky.text = [[
+${image /home/matt/.config/conky/archmerge-200x200.png -p 10,0 -s 60x60  -f 5}${font sans mono:size=6}${alignr}${color3}Aureola Skeleton
+${alignr}v2.0.3${font}${color}
+
+
+#                     S y s t e m
+${goto 12}+-----------------------------------------------------------+
+${goto 15}|${goto 38}+-- ${color2}Node ${goto 200}${color4}${nodename}${font}${color}  (${color4}${sysname}${color}  ${color4}${kernel}${color} )
+#                     M e m o r y
+${goto 12}${color2}+----Memory ${color} ${goto 200}${color4}${mem} / ${color4}${memmax} ${color2}(${memperc}%)${color}
+${goto 15}${memgraph 30, 450 555555 AAAAAA -l}
+#${goto 15}${membar 10, 450}
+${goto 15}|${goto 38}+-- ${color2}Swap${color} ${goto 120}${color4}${swapmax}${color}
+${goto 15}|${goto 60} ${swapbar 10,400}
+#
+#
+#
+#
+## One unit
+#${goto 15}|${goto 38}+-- ${color4}/${goto 200}${color4}${fs_used /} / ${fs_size /} ${color1}(${fs_used_perc /}%)${color}
+#${goto 15}|${goto 38}+-- ${color4}/${goto 200}${color4}${fs_bar 15, 250 /} (${fs_used_perc /}%)
+#${goto 15}|${goto 38}+-- ${color4}/${goto 155}${color4}${fs_used_perc /}% Used${color}   |   ${color4}Diskio ${goto 355}${color4}${diskio}bps${color}
+#${goto 15}|${goto 60}+-- ${color4}Read${goto 155}${color5}${diskio_read}bps${color}        |  ${color4}Write${goto 355}${color5}${diskio_write}bps${color}
+#${goto 15}|${goto 60}+-- ${color4}Read${goto 155}${color5}${diskiograph_read / 10,80 555555 AAAAAA -t}${color}   |  ${color4}Write  ${color5}${diskiograph_write / 10, 80 555555 AAAAAA -t}${color}
+## Root
+${goto 15}|${goto 38}+-- ${color3}/${goto 200}${color4}${fs_used /} / ${fs_size /} ${color2}(${fs_used_perc /}%)${color}
+${goto 15}|${goto 38}+-- ${color4}/${goto 200}${color4}${fs_bar 15, 250 /} (${fs_used_perc /}%)
+${goto 15}|${goto 38}+-- ${color4}/${goto 155}${color4}${fs_used_perc /}% Used${color}   |   ${color4}Diskio ${goto 355}${color4}${diskio /}bps${color}
+${goto 15}|${goto 60}+-- ${color4}Read${goto 155}${color5}${diskio_read /}bps${color}        |  ${color4}Write${goto 355}${color5}${diskio_write /}bps${color}
+${goto 15}|${goto 60}+-- ${color4}Read${goto 155}${color5}${diskiograph_read / 10,80 555555 AAAAAA -t}${color}   |  ${color4}Write  ${color5}${diskiograph_write / 10, 80 555555 AAAAAA -t}${color}
+## tmp
+${goto 15}|${goto 38}+-- ${color3}/tmp${goto 200}${color4}${fs_used /tmp} / ${fs_size /tmp} ${color2}(${fs_used_perc /tmp}%)${color}
+${goto 15}|${goto 38}+-- ${color4}/tmp${goto 200}${color4}${fs_bar 15, 250 /tmp} (${fs_used_perc /tmp}%)
+${goto 15}|${goto 38}+-- ${color4}/tmp${goto 155}${color4}${fs_used_perc /tmp}% Used${color}   |   ${color4}Diskio ${goto 355}${color4}${diskio tmp}bps${color}
+${goto 15}|${goto 60}+-- ${color4}Read${goto 155}${color5}${diskio_read}bps${color}        |  ${color4}Write${goto 355}${color5}${diskio_write}bps${color}
+${goto 15}|${goto 60}+-- ${color4}Read${goto 155}${color5}${diskiograph_read /tmp 10,80 555555 AAAAAA -t}${color}   |  ${color4}Write  ${color5}${diskiograph_write /tmp 10, 80 555555 AAAAAA -t}${color}
+#FFast
+${goto 15}|${goto 38}+-- ${color3}/ffast${goto 200}${color4}    ${exec sudo du -sh /ffast | cut -f1} /  ${exec sudo mdadm --detail /dev/md127 | grep 'Array Size' | cut -d'(' -f 2 | cut -d' ' -f3}Gb${color}
+${goto 15}|${goto 38}+-- ${color4}/ffast${goto 200}${color4}${exec sudo du -sh /ffast | cut -f1}${color}
+${goto 15}|${goto 38}+-- ${color4}/ffast${goto 200}${color4}${fs_bar 15, 250 /dev/md127} (${fs_used_perc /dev/md127}%)
+${goto 15}|${goto 38}+-- ${color4}/ffast${goto 155}${color4}${fs_used_perc /dev/md127}% Used${color}   |   ${color4}Diskio ${goto 355}${color4}${diskio /dev/md127}bps${color}
+${goto 15}|${goto 60}+-- ${color4}Read${goto 155}${color5}${diskio_read /dev/md127}bps${color}        |  ${color4}Write${goto 355}${color5}${diskio_write /dev/md127}bps${color}
+${goto 15}|${goto 60}+-- ${color4}Read${goto 155}${color5}${diskiograph_read /dev/md127 10,80 555555 AAAAAA -t}${color}   |  ${color4}Write  ${color5}${diskiograph_write /dev/md127 10, 80 555555 AAAAAA -t}${color}
+## One unit
+#${goto 15}|${goto 38}+-- ${color4}/${goto 200}${color4}${fs_used /} / ${fs_size /} ${color1}(${fs_used_perc /}%)${color}
+#${goto 15}|${goto 38}+-- ${color4}/${goto 200}${color4}${fs_bar 15, 250 /} (${fs_used_perc /}%)
+#${goto 15}|${goto 38}+-- ${color4}/${goto 155}${color4}${fs_used_perc /}% Used${color}   |   ${color4}Diskio ${goto 355}${color4}${diskio}bps${color}
+#${goto 15}|${goto 60}+-- ${color4}Read${goto 155}${color5}${diskio_read}bps${color}        |  ${color4}Write${goto 355}${color5}${diskio_write}bps${color}
+#${goto 15}|${goto 60}+-- ${color4}Read${goto 155}${color5}${diskiograph_read / 10,80 555555 AAAAAA -t}${color}   |  ${color4}Write  ${color5}${diskiograph_write / 10, 80 555555 AAAAAA -t}${color}
+#${goto 15 |${goto 38}+-- ${color2}Disk IO${color} ${goto 120}${color4}${diskiograph /ffast 16,160 555555 AAAAAA -t -l}
+#                     S t a t u s
+${goto 12}${color3}+----Status${color}
+${goto 15}|${goto 38}+-- ${color3}Cpu${goto 155}${color4}${cpu cpu0}% ${color4}- ${freq_g}GHz${color}
+${goto 15}|${goto 38}+-- ${color3}Temp${goto 155}${color4}${exec sensors 2>/dev/null | grep Tdie | cut -d' ' -f10}${color}
+${goto 15}|${goto 38}  1: ${cpugraph 1 16,120 555555 AAAAAA -t}   2: ${cpugraph 2 16,120 555555 AAAAAA -t}   3: ${cpugraph 3 16,120 555555 AAAAAA -t}
+${goto 15}|${goto 38}  4: ${cpugraph 4 16,120 555555 AAAAAA -t}   5: ${cpugraph 5 16,120 555555 AAAAAA -t}   6: ${cpugraph 6 16,120 555555 AAAAAA -t}
+${goto 15}|${goto 38}  7: ${cpugraph 7 16,120 555555 AAAAAA -t}   8: ${cpugraph 8 16,120 555555 AAAAAA -t}   9: ${cpugraph 9 16,120 555555 AAAAAA -t}
+${goto 15}|${goto 38}10: ${cpugraph 10 16,120 555555 AAAAAA -t} 11: ${cpugraph 11 16,120 555555 AAAAAA -t} 12: ${cpugraph 12 16,120 555555 AAAAAA -t}
+${goto 15}|${goto 38}13: ${cpugraph 13 16,120 555555 AAAAAA -t} 14: ${cpugraph 14 16,120 555555 AAAAAA -t} 15: ${cpugraph 15 16,120 555555 AAAAAA -t}
+${goto 15}|${goto 38}16: ${cpugraph 16 16,120 555555 AAAAAA -t} 17: ${cpugraph 17 16,120 555555 AAAAAA -t} 18: ${cpugraph 18 16,120 555555 AAAAAA -t}
+${goto 15}|${goto 38}19: ${cpugraph 19 16,120 555555 AAAAAA -t} 20: ${cpugraph 20 16,120 555555 AAAAAA -t} 21: ${cpugraph 21 16,120 555555 AAAAAA -t}
+${goto 15}|${goto 38}22: ${cpugraph 22 16,120 555555 AAAAAA -t} 23: ${cpugraph 23 16,120 555555 AAAAAA -t} 24: ${cpugraph 24 16,120 555555 AAAAAA -t}
+${goto 15}|${goto 38}25: ${cpugraph 25 16,120 555555 AAAAAA -t} 26: ${cpugraph 26 16,120 555555 AAAAAA -t} 27: ${cpugraph 27 16,120 555555 AAAAAA -t}
+${goto 15}|${goto 38}28: ${cpugraph 28 16,120 555555 AAAAAA -t} 29: ${cpugraph 29 16,120 555555 AAAAAA -t} 30: ${cpugraph 30 16,120 555555 AAAAAA -t}
+${goto 15}|${goto 38}31: ${cpugraph 31 16,120 555555 AAAAAA -t} 32: ${cpugraph 32 16,120 555555 AAAAAA -t} 33: ${cpugraph 33 16,120 555555 AAAAAA -t}
+${goto 15}|${goto 38}34: ${cpugraph 34 16,120 555555 AAAAAA -t} 35: ${cpugraph 35 16,120 555555 AAAAAA -t} 36: ${cpugraph 36 16,120 555555 AAAAAA -t}
+${goto 15}|${goto 38}37: ${cpugraph 37 16,120 555555 AAAAAA -t} 38: ${cpugraph 38 16,120 555555 AAAAAA -t} 39: ${cpugraph 39 16,120 555555 AAAAAA -t}
+${goto 15}|${goto 38}40: ${cpugraph 40 16,120 555555 AAAAAA -t} 41: ${cpugraph 41 16,120 555555 AAAAAA -t} 42: ${cpugraph 42 16,120 555555 AAAAAA -t}
+${goto 15}|${goto 38}43: ${cpugraph 43 16,120 555555 AAAAAA -t} 44: ${cpugraph 44 16,120 555555 AAAAAA -t} 45: ${cpugraph 45 16,120 555555 AAAAAA -t}
+${goto 15}|${goto 38}46: ${cpugraph 46 16,120 555555 AAAAAA -t} 47: ${cpugraph 47 16,120 555555 AAAAAA -t} 48: ${cpugraph 48 16,120 555555 AAAAAA -t}
+#                     G P U
+${goto 12}${color2}+----GPU${color}
+${goto 15}|${goto 38}+-- ${color2}GPU ${goto 155}${color2}${execpi 0.001 (nvidia-smi --query-gpu=gpu_name --format=csv,noheader)}${color4} - ${execpi 0.001 (nvidia-smi --query-gpu=clocks.sm --format=csv,noheader)}${color}
+${goto 15}|${goto 60}${color3}Temp: ${color4}${execpi 0.001 (nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader)}°C${goto 130}${color3}Usage:${goto 200}${color4}${execpi 0.001 (nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader)}${color}
+${goto 15}|${goto 60}${color3}VRAM: ${goto 120}${color4}${execpi 0.001 (nvidia-smi --query-gpu=memory.used --format=csv,noheader)} / ${execpi 0.001 (nvidia-smi --query-gpu=memory.total --format=csv,noheader)} ${color3}(${execpi 0.001 (nvidia-smi --query-gpu=utilization.memory --format=csv,noheader)})${color}
+
+#                     S t o r a g e
+${goto 12}${color1}+----Storage ${color}
+${goto 15}|${goto 38}+-- ${color2}Storage${goto 200}${color4}${fs_used /storage} / ${fs_size /storage}${color} ${color1}(${fs_used_perc /storage}%)${color}
+${goto 15}|${goto 60}${color3}Backups${goto 130}${color4}    ${exec sudo du -sh /storage/backups | cut -f1}${color}
+${goto 15}|${goto 60}${color3}Media${goto 130}${color4}    ${exec sudo du -sh /storage/media | cut -f1}${color}
+${goto 15}|${goto 60}${color3}Data${goto 130}${color4}    ${exec sudo du -sh /storage/data | cut -f1}${color}
+${goto 15}|${goto 38}+-- ${color2}External${goto 200}${color4}${fs_used /externalStorage} / ${fs_size /externalStorage}${color} ${color1}(${fs_used_perc /externalStorage}%)${color}
+#                     P r o c e s s e s
+${goto 12}${color1}+----Processes ${color} (  ${color4}${running_processes}${color} Running  |  ${color4}${processes}${color} Total  )
+#${goto 15}|${goto 38}+-- ${color2}Total${goto 155}${color4}${processes}${color}
+#${goto 15}|${goto 38}+-- ${color2}Running${goto 155}${color4}${running_processes}${color}
+${goto 15}|${goto 38}+-- ${color2}CPU${color4}${goto 380}CPU${offset 20}Mem${color}
+${goto 15}|${goto 40}|${goto 60}+-- ${color3}${top name 1}${goto 365}${color4}${top cpu 1}%${top mem 1}%${color}
+${goto 15}|${goto 40}|${goto 60}+-- ${color3}${top name 2}${goto 365}${color4}${top cpu 2}%${top mem 2}%${color}
+${goto 15}|${goto 40}|${goto 60}+-- ${color3}${top name 3}${goto 365}${color4}${top cpu 3}%${top mem 3}%${color}
+${goto 15}|${goto 40}|${goto 60}+-- ${color3}${top name 4}${goto 365}${color4}${top cpu 4}%${top mem 4}%${color}
+${goto 15}|${goto 40}|${goto 60}+-- ${color3}${top name 5}${goto 365}${color4}${top cpu 5}%${top mem 5}%${color}
+${goto 15}|${goto 38}+-- ${color2}Mem${color4}${goto 380}CPU${offset 20}Mem${color}
+${goto 15}|${goto 60}+-- ${color3}${top_mem name 1}${goto 365}${color4}${top_mem cpu 1}%${top_mem mem 1}%${color}
+${goto 15}|${goto 60}+-- ${color3}${top_mem name 2}${goto 365}${color4}${top_mem cpu 2}%${top_mem mem 2}%${color}
+${goto 15}|${goto 60}+-- ${color3}${top_mem name 3}${goto 365}${color4}${top_mem cpu 3}%${top_mem mem 3}%${color}
+${goto 15}|${goto 60}+-- ${color3}${top_mem name 4}${goto 365}${color4}${top_mem cpu 4}%${top_mem mem 4}%${color}
+${goto 15}|${goto 60}+-- ${color3}${top_mem name 5}${goto 365}${color4}${top_mem cpu 5}%${top_mem mem 5}%${color}
+]]
