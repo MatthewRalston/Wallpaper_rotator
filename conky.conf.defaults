@@ -149,10 +149,13 @@ ${goto 15}|${goto 38}+-- ${color4}/tmp${goto 200}${color4}${fs_bar 15, 250 /tmp}
 ${goto 15}|${goto 38}+-- ${color4}/tmp${goto 155}${color4}${fs_used_perc /tmp}% Used${color}   |   ${color4}Diskio ${goto 355}${color4}${diskio tmp}bps${color}
 ${goto 15}|${goto 60}+-- ${color4}Read${goto 155}${color5}${diskio_read}bps${color}        |  ${color4}Write${goto 355}${color5}${diskio_write}bps${color}
 ${goto 15}|${goto 60}+-- ${color4}Read${goto 155}${color5}${diskiograph_read /tmp 10,80 555555 AAAAAA -t}${color}   |  ${color4}Write  ${color5}${diskiograph_write /tmp 10, 80 555555 AAAAAA -t}${color}
+## /storage/data/scratch
+${goto 15}|${goto 38}+-- ${color3}TMPDIR${goto 200}${color4}${fs_used /storage/data/scratch} / ${fs_size /storage/data/scratch} ${color2}(${fs_used_perc /storage/data/scratch}%)${color}
+${goto 15}|${goto 38}+-- ${color4}TMPDIR${goto 200}${color4}${fs_bar 15, 250 /storage/data/scratch} (${fs_used_perc /storage/data/scratch}%)
+${goto 15}|${goto 38}+-- ${color4}TMPDIR${goto 155}${color4}${fs_used_perc /storage/data/scratch}% Used${color}   |   ${color4}Diskio ${goto 355}${color4}${diskio /storage/data/scratch}bps${color}
+${goto 15}|${goto 60}+-- ${color4}Read${goto 155}${color5}${diskio_read /storage/data/scratch}bps${color}        |  ${color4}Write${goto 355}${color5}${diskio_write /storage/data/scratch}bps${color}
+${goto 15}|${goto 60}+-- ${color4}Read${goto 155}${color5}${diskiograph_read /storage/data/scratch 10,80 555555 AAAAAA -t}${color}   |  ${color4}Write  ${color5}${diskiograph_write /storage/data/scratch 10, 80 555555 AAAAAA -t}${color}
 #FFast
-
-
-
 ${goto 15}|${goto 38}+-- ${color3}/ffast${goto 200}${color4}${exec dust --depth 0 --no-colors --no-percent-bars /ffast2 | cut -f1} /  ${exec sudo mdadm --detail /dev/md127 | grep 'Array Size' | cut -d'(' -f 2 | cut -d' ' -f3}Gb${color}
 ${goto 15}|${goto 38}+-- ${color4}/ffast${goto 200}${color4}${fs_bar 15, 250 /ffast2} (${fs_used_perc /ffast2}%)
 ${goto 15}|${goto 38}+-- ${color4}/ffast${goto 155}${color4}${fs_used_perc /ffast2}% Used${color}   |   ${color4}Diskio ${goto 355}${color4}${diskio /dev/md/ffast}bps${color}
