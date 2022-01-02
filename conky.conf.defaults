@@ -150,12 +150,14 @@ ${goto 15}|${goto 38}+-- ${color4}/tmp${goto 155}${color4}${fs_used_perc /tmp}% 
 ${goto 15}|${goto 60}+-- ${color4}Read${goto 155}${color5}${diskio_read}bps${color}        |  ${color4}Write${goto 355}${color5}${diskio_write}bps${color}
 ${goto 15}|${goto 60}+-- ${color4}Read${goto 155}${color5}${diskiograph_read /tmp 10,80 555555 AAAAAA -t}${color}   |  ${color4}Write  ${color5}${diskiograph_write /tmp 10, 80 555555 AAAAAA -t}${color}
 #FFast
-${goto 15}|${goto 38}+-- ${color3}/ffast${goto 200}${color4}    ${exec sudo du -sh /ffast | cut -f1} /  ${exec sudo mdadm --detail /dev/md127 | grep 'Array Size' | cut -d'(' -f 2 | cut -d' ' -f3}Gb${color}
-${goto 15}|${goto 38}+-- ${color4}/ffast${goto 200}${color4}${exec sudo du -sh /ffast | cut -f1}${color}
-${goto 15}|${goto 38}+-- ${color4}/ffast${goto 200}${color4}${fs_bar 15, 250 /dev/md127} (${fs_used_perc /dev/md127}%)
-${goto 15}|${goto 38}+-- ${color4}/ffast${goto 155}${color4}${fs_used_perc /dev/md127}% Used${color}   |   ${color4}Diskio ${goto 355}${color4}${diskio /dev/md127}bps${color}
-${goto 15}|${goto 60}+-- ${color4}Read${goto 155}${color5}${diskio_read /dev/md127}bps${color}        |  ${color4}Write${goto 355}${color5}${diskio_write /dev/md127}bps${color}
-${goto 15}|${goto 60}+-- ${color4}Read${goto 155}${color5}${diskiograph_read /dev/md127 10,80 555555 AAAAAA -t}${color}   |  ${color4}Write  ${color5}${diskiograph_write /dev/md127 10, 80 555555 AAAAAA -t}${color}
+
+
+
+${goto 15}|${goto 38}+-- ${color3}/ffast${goto 200}${color4}${exec dust --depth 0 --no-colors --no-percent-bars /ffast2 | cut -f1} /  ${exec sudo mdadm --detail /dev/md127 | grep 'Array Size' | cut -d'(' -f 2 | cut -d' ' -f3}Gb${color}
+${goto 15}|${goto 38}+-- ${color4}/ffast${goto 200}${color4}${fs_bar 15, 250 /ffast2} (${fs_used_perc /ffast2}%)
+${goto 15}|${goto 38}+-- ${color4}/ffast${goto 155}${color4}${fs_used_perc /ffast2}% Used${color}   |   ${color4}Diskio ${goto 355}${color4}${diskio /dev/md/ffast}bps${color}
+${goto 15}|${goto 60}+-- ${color4}Read${goto 155}${color5}${diskio_read /dev/md/ffast}bps${color}        |  ${color4}Write${goto 355}${color5}${diskio_write /dev/md/ffast}bps${color}
+${goto 15}|${goto 60}+-- ${color4}Read${goto 155}${color5}${diskiograph_read /dev/md/ffast 10,80 555555 AAAAAA -t}${color}   |  ${color4}Write  ${color5}${diskiograph_write /dev/md/ffast 10, 80 555555 AAAAAA -t}${color}
 ## One unit
 #${goto 15}|${goto 38}+-- ${color4}/${goto 200}${color4}${fs_used /} / ${fs_size /} ${color1}(${fs_used_perc /}%)${color}
 #${goto 15}|${goto 38}+-- ${color4}/${goto 200}${color4}${fs_bar 15, 250 /} (${fs_used_perc /}%)
@@ -192,9 +194,9 @@ ${goto 15}|${goto 60}${color3}VRAM: ${goto 120}${color4}${execpi 0.001 (nvidia-s
 #                     S t o r a g e
 ${goto 12}${color1}+----Storage ${color}
 ${goto 15}|${goto 38}+-- ${color2}Storage${goto 200}${color4}${fs_used /storage} / ${fs_size /storage}${color} ${color1}(${fs_used_perc /storage}%)${color}
-${goto 15}|${goto 60}${color3}Backups${goto 130}${color4}    ${exec sudo du -sh /storage/backups | cut -f1}${color}
-${goto 15}|${goto 60}${color3}Media${goto 130}${color4}    ${exec sudo du -sh /storage/media | cut -f1}${color}
-${goto 15}|${goto 60}${color3}Data${goto 130}${color4}    ${exec sudo du -sh /storage/data | cut -f1}${color}
+${goto 15}|${goto 60}${color3}Backups${goto 130}${color4}    ${exec dust --depth 0 --no-colors --no-percent-bars /storage/backups | cut -f1}${color}
+${goto 15}|${goto 60}${color3}Media${goto 130}${color4}    ${exec dust --depth 0 --no-percent-bars --no-colors /storage/media | cut -f1}${color}
+${goto 15}|${goto 60}${color3}Data${goto 130}${color4}    ${exec dust --depth 0 --no-percent-bars --no-colors /storage/data | cut -f1}${color}
 ${goto 15}|${goto 38}+-- ${color2}External${goto 200}${color4}${fs_used /externalStorage} / ${fs_size /externalStorage}${color} ${color1}(${fs_used_perc /externalStorage}%)${color}
 #                     P r o c e s s e s
 ${goto 12}${color1}+----Processes ${color} (  ${color4}${running_processes}${color} Running  |  ${color4}${processes}${color} Total  )

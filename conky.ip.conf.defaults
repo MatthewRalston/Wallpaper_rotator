@@ -121,7 +121,7 @@ ${alignr}v2.0.3${font}${color}
 #                     N e t w o r k
 ${goto 12}${color1}+----Net ${color} ( Up  ${color4}${upspeedf wlan0}KB/s${color} | Down ${color4}${downspeedf wlan0}KB/s${color} )
 ${goto 15}|${goto 38}+-- ${color2}Ip${goto 155}${addr wlan0}${color}
-${goto 15}|${goto 38}+-- ${color2}External Ip${goto 155}${execi 3600 wget -O - http://ipv4bot.whatismyipaddress.com }${color}
+${goto 15}|${goto 38}+-- ${color2}External Ip${goto 155}${exec curl ifconfig.me }${color}
 
 #${goto 15}|${goto 38}+-- ${color2}Up${color}  ${goto 155}${color4}${upspeedf wlp4s0}KB/s${color}
 #${goto 15}|${goto 38}+-- ${color2}Down${color}  ${goto 155}${color4}${downspeedf wlp4s0}KB/s${color}
